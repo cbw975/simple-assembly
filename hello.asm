@@ -18,7 +18,7 @@ _start:				      ; Labels the entry point to the program.
 	mov       rax, 1              ; rax gets the system call code for "write".
         mov       rdi, 1              ; rdi gets the file handle for stdout (console).
         mov       rsi, greetings      ; rsi gets the address of the string below.
-        mov       rdx, 13             ; rdx gets the number of bytes to write.
+        mov       rdx, 33             ; rdx gets the number of bytes to write.
         syscall                       ; Call kernel, triggering the write.  The
 	                              ; registers carry the arguments.
 	
@@ -32,5 +32,5 @@ _start:				      ; Labels the entry point to the program.
         section   .data		      ; The start of the data portion of the program.
 
 greetings:			      ; Labels the string of bytes to be written.
-	db        "Hello, World", 10  ; The message, with the byte values for "newline" appended.
+	db        "Working in hexadecimal is cruel", 10  ; The message, with the byte values for "newline" appended.
 ; ------------------------------------------------------------------------------
