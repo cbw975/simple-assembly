@@ -15,10 +15,23 @@
         section   .text
 
 _start:
-
-        ;; YOUR CODE GOES HERE.
+        mov       r10, 10             ; loop iteration counter
+print_loop:
         ;; Make the program print, one line at a time: 9, 8, 7, ..., 1, 0.
-
+        dec       r10                 ; decrement loop counter
+        mov       rax, 1              ; rax gets the system call code for "write".
+        mov       rdi, 1              ; rdi gets the file handle for stdout (console).
+        mov       rsi, digit_str      ; rsi gets the address of the string below.
+        mov       rdx, 2              ; rdx gets the number of bytes to write.
+        syscall                       ; Call kernel, triggering the write.  The
+	                              ; registers carry the arguments.
+        
+        mov       r11, [digit_str]
+        dec       r11
+        mov       [digit_str], r11
+        
+        cmp       r10, 0
+        jne       print_loop
 
 	;; This code ends the program.
         mov       rax, 60                 ; system call for exit
