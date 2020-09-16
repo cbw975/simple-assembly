@@ -19,7 +19,10 @@ _start:				      ; Labels the entry point to the program.
         mov       rdi, 1              ; rdi gets the file handle for stdout (console).
         mov       rsi, greetings      ; rsi gets the address of the string below.
         mov       rdx, 33             ; rdx gets the number of bytes to write.
-        syscall                       ; Call kernel, triggering the write.  The
+
+	;; JS You're printing one extra char here, which is why the output has an additional comma after the newline. rdx should get 32
+
+	syscall                       ; Call kernel, triggering the write.  The
 	                              ; registers carry the arguments.
 	
         mov       rax, 60             ; rax gets the system call code for "exit"
